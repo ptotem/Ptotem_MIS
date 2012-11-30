@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  topic: MyString
+  date: 2012-11-26 16:04:50
+  conversation: MyText
+  company_id: 1
+  action_point_id: 1
+
+two:
+  topic: MyString
+  date: 2012-11-26 16:04:50
+  conversation: MyText
+  company_id: 1
+  action_point_id: 1

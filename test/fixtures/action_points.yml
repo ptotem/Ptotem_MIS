@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  action: MyString
+  date: 2012-11-26
+  responsibility: MyString
+  status: MyString
+  parent_id: 1
+
+two:
+  action: MyString
+  date: 2012-11-26
+  responsibility: MyString
+  status: MyString
+  parent_id: 1

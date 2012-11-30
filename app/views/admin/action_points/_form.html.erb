@@ -1,0 +1,61 @@
+<style type="text/css">
+    body.active_admin form input[type="text"], body.active_admin form input[type="password"], body.active_admin form input[type="email"], body.active_admin form input[type="number"], body.active_admin form input[type="url"], body.active_admin form input[type="tel"], body.active_admin form textarea {
+        width: 70%;
+    }
+</style>
+<%= javascript_include_tag "application" %>
+<script type="text/javascript">
+    $(function () {
+        $('FORM').nestedFields();
+    })
+</script>
+
+<%= semantic_form_for [:admin, @action_point] do |f| %>
+    <table style="width: 100%">
+      <tr>
+        <td>
+          <%= f.inputs do %>
+              <%= f.input :name, :label => "Action Point Name" %>
+              <% @employees = Employee.find_all_by_company_id(1) %>
+              <%= f.input :responsible_person, :as => :select, :collection => @employees %>
+              <%= f.input :due_date %>
+              <%= f.input :status, :as => :select, :collection => ["Open", "Close"] %>
+              <%= f.input :meeting %>
+          <% end %>
+          <%#= f.hidden_field :id %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <h2>Associated Tasks
+            <a href="#" class="add" style="float:right;font-size: 18px;">Add Task</a>
+          </h2>
+          <br>
+          <br>
+
+          <div class="items">
+            <%= f.nested_fields_for :tasks do |f| %>
+                <fieldset class="item" style="margin-top: -50px;">
+                  <%= f.inputs do %>
+                      <a href="#" class="remove" style="float:right; margin-right: 20px;">Remove</a>
+                      <%#= f.input :action_point %>
+                      <%= f.input :name %>
+                      <%= f.input :due_date %>
+                      <% @employees = Employee.find_all_by_company_id(1) %>
+                      <%= f.input :responsible_person, :as => :select, :collection => @employees %>
+                      <%= f.input :status, :as => :select, :collection => ["Open", "Close"] %>
+                  <% end %>
+                  <%= f.hidden_field :id %>
+                  <%= f.hidden_field :_destroy %>
+                </fieldset>
+            <% end %>
+          </div>
+
+        </td>
+      </tr>
+    </table>
+
+
+    <%= f.actions %>
+<% end %>
+
