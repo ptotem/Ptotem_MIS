@@ -6,4 +6,4 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Company.create(name: 'Ptotem Learning Projects LLP')
+Company.create(:name => 'Ptotem Learning Projects LLP')
