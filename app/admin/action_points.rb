@@ -5,13 +5,6 @@ ActiveAdmin.register ActionPoint do
   menu :priority => 6
   form :partial => 'form'
 
-  #controller do
-  #  def show
-  #    render :text => params
-  #    @action_points = ActionPoint.all
-  #  end
-  #end
-
   index do
     selectable_column
     #column :id
@@ -27,7 +20,11 @@ ActiveAdmin.register ActionPoint do
     end
     column "Action Point Name", :name
     column :due_date
-    column :responsible_person
+    column "Responsible Person" do |action_point|
+      Employee.find(action_point.responsible_person).name
+    end
+    #column :responsible_person
+
     column :status
     default_actions
   end
@@ -36,8 +33,6 @@ ActiveAdmin.register ActionPoint do
   filter :due_date
   filter :responsible_person
   filter :status
-
-
 
 
 end

@@ -37,11 +37,13 @@
                 <fieldset class="item" style="margin-top: -50px;">
                   <%= f.inputs do %>
                       <a href="#" class="remove" style="float:right; margin-right: 20px;">Remove</a>
-                      <%#= f.input :meeting %>
+                      <%= f.input :meeting %>
                       <%= f.input :name, :label => "Action Point Name" %>
                       <%= f.input :due_date, :as => :date_select %>
                       <% @employees = Employee.find_all_by_company_id(1) %>
                       <%= f.input :responsible_person, :as => :select, :collection => @employees %>
+                      <%#= f.input :responsible_person, :as => :select, :collection => @employees.each do |emp| emp.id emp.name end%>
+                      <%#= f.input :responsible_person, :as => :select, :collection => @employees.map(&:name)%>
                       <%= f.input :status, :as => :select, :collection => ["Open", "Close"] %>
                   <% end %>
                   <%= f.hidden_field :id %>

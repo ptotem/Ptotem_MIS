@@ -10,37 +10,37 @@
     })
 </script>
 
-<%= semantic_form_for [:admin, @action_point] do |f| %>
+<%= semantic_form_for [:admin, @task] do |f| %>
     <table style="width: 100%">
       <tr>
         <td>
           <%= f.inputs do %>
-              <%= f.input :name, :label => "Action Point Name" %>
+              <%= f.input :name, :label => "Task Name" %>
               <% @employees = Employee.find_all_by_company_id(1) %>
               <%= f.input :responsible_person, :as => :select, :collection => @employees %>
               <%#= f.input :responsible_person, :as => :select, :collection => @employees.each do |emp| emp.name end %>
               <%#= f.input :responsible_person, :as => :select, :collection => @employees.map(&:name)%>
               <%= f.input :due_date %>
               <%= f.input :status, :as => :select, :collection => ["Open", "Close"] %>
-              <%= f.input :meeting %>
+              <%= f.input :action_point %>
           <% end %>
           <%#= f.hidden_field :id %>
         </td>
       </tr>
       <tr>
         <td>
-          <h2>Associated Tasks
-            <a href="#" class="add" style="float:right;font-size: 18px;">Add Task</a>
+          <h2>Associated Sub-tasks
+            <a href="#" class="add" style="float:right;font-size: 18px;">Add Sub-task</a>
           </h2>
           <br>
           <br>
 
           <div class="items">
-            <%= f.nested_fields_for :tasks do |f| %>
+            <%= f.nested_fields_for :sub_tasks do |f| %>
                 <fieldset class="item" style="margin-top: -50px;">
                   <%= f.inputs do %>
                       <a href="#" class="remove" style="float:right; margin-right: 20px;">Remove</a>
-                      <%= f.input :action_point %>
+                      <%= f.input :task %>
                       <%= f.input :name %>
                       <%= f.input :due_date %>
                       <% @employees = Employee.find_all_by_company_id(1) %>

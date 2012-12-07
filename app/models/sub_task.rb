@@ -1,11 +1,7 @@
-class Task < ActiveRecord::Base
-  attr_accessible :action_point_id, :due_date, :name, :responsible_person, :status
+class SubTask < ActiveRecord::Base
+  attr_accessible :due_date, :name, :status, :responsible_person, :task_id
 
-  belongs_to :action_point
-
-  has_many :sub_tasks, :dependent => :destroy
-  accepts_nested_attributes_for :sub_tasks, :allow_destroy => true
-
+  belongs_to :task
 
   before_save :check_due_date
 
@@ -19,17 +15,17 @@ class Task < ActiveRecord::Base
   rails_admin do
     visible false
     weight 3
-    navigation_label 'Tasks Database'
+    navigation_label 'Sub-tasks Database'
 
     list do
-      field :action_point_id
+      field :task_id
       field :name
       field :due_date
       field :responsible_person
       field :status
     end
     edit do
-      field :action_point_id
+      field :task_id
       field :name
       field :due_date
       field :responsible_person

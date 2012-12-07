@@ -5,7 +5,6 @@ class CreateActionPoints < ActiveRecord::Migration
       t.string :responsible_person
       t.date :due_date
       t.string :status
-      #t.integer :parent_action_id
       t.integer :meeting_id
       t.timestamps
     end

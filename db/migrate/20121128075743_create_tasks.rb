@@ -5,7 +5,6 @@ class CreateTasks < ActiveRecord::Migration
       t.date :due_date
       t.string :responsible_person
       t.string :status
-      t.integer :parent_task_id
       t.integer :action_point_id
 
       t.timestamps

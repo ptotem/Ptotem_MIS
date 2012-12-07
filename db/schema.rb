@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121128163455) do
+ActiveRecord::Schema.define(:version => 20121207061300) do
 
   create_table "action_points", :force => true do |t|
     t.string   "name"
@@ -68,8 +68,9 @@ ActiveRecord::Schema.define(:version => 20121128163455) do
     t.string   "email"
     t.integer  "phone"
     t.integer  "company_id"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.boolean  "admin",       :default => false
   end
 
   create_table "meetings", :force => true do |t|
@@ -89,12 +90,21 @@ ActiveRecord::Schema.define(:version => 20121128163455) do
     t.datetime "updated_at", :null => false
   end
 
+  create_table "sub_tasks", :force => true do |t|
+    t.integer  "task_id"
+    t.string   "name"
+    t.date     "due_date"
+    t.string   "status"
+    t.string   "responsible_person"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
+
   create_table "tasks", :force => true do |t|
     t.string   "name"
     t.date     "due_date"
     t.string   "responsible_person"
     t.string   "status"
-    t.integer  "parent_task_id"
     t.integer  "action_point_id"
     t.datetime "created_at",         :null => false
     t.datetime "updated_at",         :null => false

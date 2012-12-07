@@ -16,4 +16,16 @@ ActiveAdmin.register Employee do
   filter :email
   filter :phone
 
+  form do |f|
+    f.inputs "Employees" do
+      f.input :company
+      f.input :name, :label =>"Employee Name"
+      f.input :designation
+      f.input :email
+      f.input :phone
+
+    end
+    f.buttons
+  end
+
 end
