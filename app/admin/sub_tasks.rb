@@ -1,7 +1,7 @@
 ActiveAdmin.register SubTask do
 
 
-  menu false
+  #menu false
   menu :priority => 8
   index do
     selectable_column

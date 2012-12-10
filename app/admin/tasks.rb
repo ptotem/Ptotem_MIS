@@ -34,6 +34,35 @@ ActiveAdmin.register Task do
   #  f.buttons
   #end
 
+  show do |ad|
+    attributes_table do
+      row :action_point
+      row :name
+      row :due_date
+      row "Responsible Person" do |task|
+        Employee.find(task.responsible_person).name
+      end
+      row :status
+      panel "Associated Sub-tasks" do
+        table_for task.sub_tasks do
+          column "Task Name" do |sub_task|
+            sub_task.name
+          end
+          column "Due Date" do |sub_task|
+            sub_task.due_date
+          end
+          column "Responsible Person" do |sub_task|
+            Employee.find(sub_task.responsible_person).name
+          end
+          column "Status" do |sub_task|
+            sub_task.status
+          end
+        end
+      end
+    end
+    #active_admin_comments
+  end
+
 
   
 end
